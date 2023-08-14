@@ -15,14 +15,14 @@
     outline: none;
 }
 .searchBar button{
-    height: 45px;
+    height: auto;
     border: 2px solid #c77129;
     background-color: #1d2227;
     color: #c77129;
     box-sizing: border-box;
     border-radius: 0 30% 30% 0;
     font-size: 30px;
-    padding: 6px 15px 0;
+    padding: 6px 15px;
 
 }
 .searchBar ul{

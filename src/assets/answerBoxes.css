@@ -10,6 +10,7 @@
 }
 th{
     color: white;
+    font-weight: 100;
 }
 td.champImg{
     background-color: black;
@@ -21,6 +22,7 @@ td{
     backface-visibility: hidden;
     transition: 0.5s;
     perspective: 70px;
+    font-weight: 100;
     transform: rotateY(180deg);
     box-shadow: inset 0 0 6px #000;
 }
@@ -40,10 +42,4 @@ table{
 }
 .makeYellow{
     background-color: #e08b11;
-}
-.arrowEarlier{
-    clip-path: ;
-}
-.arrowLater{
-
 }
