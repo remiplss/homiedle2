@@ -11,7 +11,7 @@ const SearchBar = ({getAnswer, passClass}) => {
         const inputValueLowerCase = inputValue.trim().toLowerCase();
         return options.filter(option =>
             !usedValues.current.includes(option[0]) &&
-            option[0].toLowerCase().startsWith(inputValueLowerCase)
+            option[0].split("'").join('').toLowerCase().startsWith(inputValueLowerCase)
         );
     };
     const handleInputChange = (event) => {
@@ -56,7 +56,7 @@ const SearchBar = ({getAnswer, passClass}) => {
                 onKeyPress={handleKeyPress}
                 placeholder="Type champion name..."
             />
-            <button onClick={handleCompareClick}>></button>
+                <button onClick={handleCompareClick}>➤</button>
                 <ul>
                     {suggestions.map((suggestion, index) => (
                         value !== '' &&

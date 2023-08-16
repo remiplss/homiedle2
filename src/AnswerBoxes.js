@@ -13,7 +13,12 @@ export const AnswerBoxes = (props) => {
         } else if (commonElements.length > 0) {
             return 'makeYellow';
         } else {
-            return 'makeRed';
+            if(specAns === 'releaseYear'){
+                let arrow
+                answer[specAns][0] < finalAnswer[specAns][0] ? arrow = 'yearBefore' : arrow = 'yearAfter'
+                return `makeRed ${arrow}`
+            }
+            else return 'makeRed';
         }
     }
 
@@ -29,7 +34,9 @@ export const AnswerBoxes = (props) => {
     const displayedAnswer = (property) => {
         return (
             <td className={adjustClass(property)}>
+                <div>
                 {(answer[property]).length > 1 ? (answer[property]).join(', ') : answer[property]}
+                </div>
             </td>
         )
     }
