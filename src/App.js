@@ -1,9 +1,7 @@
 import './App.css';
-import { FetchCSVData } from "./data/dataObjects";
-import { dataObjects } from "./data/temp";
 import { AnswerBoxes } from "./AnswerBoxes";
 import SearchBar from "./SearchBar";
-import React, { useEffect, useMemo, useRef, useState, CSSProperties  } from "react";
+import React, { useEffect, useMemo, useRef, useState  } from "react";
 import FadeLoader from "react-spinners/ClipLoader";
 
 
@@ -15,7 +13,6 @@ function App() {
     const [winSpin, setWinSpin] = useState('')
     const tries = useRef([])
     const [win, setWin] = useState(false)
-    let [loading, setLoading] = useState(true);
 
 
     useEffect(() => {

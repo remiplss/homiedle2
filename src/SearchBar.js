@@ -1,7 +1,5 @@
 import React, {useRef, useState, useEffect} from 'react';
 import './assets/searchBar.css';
-import {FetchCSVData} from "./data/dataObjects";
-import {dataObjects} from "./data/temp";
 
 
 const SearchBar = ({getAnswer, passClass}) => {
@@ -62,15 +60,15 @@ const SearchBar = ({getAnswer, passClass}) => {
     }
     const handleCompareClick = (viaEnter, checkMore) => {
         let userAnswer
-        if(!options.find(el => el[0] == value) && suggestions.length < 1){
+        if(!options.find(el => el[0] === value) && suggestions.length < 1){
             return
         }
-        else if(!options.find(el => el[0] == value) && suggestions.length > 0){
-            userAnswer = finalData.filter(el => el.pseudo == suggestions[0])
+        else if(!options.find(el => el[0] === value) && suggestions.length > 0){
+            userAnswer = finalData.filter(el => el.pseudo === suggestions[0])
             usedValues.current.push(suggestions[0].join(''))
         }
         else{
-            userAnswer = finalData.filter(el => el.pseudo == value)
+            userAnswer = finalData.filter(el => el.pseudo === value)
             usedValues.current.push(value)
         }
         getAnswer(userAnswer)
