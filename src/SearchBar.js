@@ -55,10 +55,11 @@ const SearchBar = ({getAnswer, passClass}) => {
         setSuggestions(getSuggestions(inputValue))
     }
     const handleSuggestionClick = (suggestion) => {
+        console.log(suggestion)
         setValue(suggestion)
         setSuggestions([])
     }
-    const handleCompareClick = (viaEnter, checkMore) => {
+    const handleCompareClick = () => {
         
 
         let userAnswer
@@ -74,17 +75,19 @@ const SearchBar = ({getAnswer, passClass}) => {
             usedValues.current.push(value)
         }
         getAnswer(userAnswer)
-        console.log(value)
         setSuggestions([])
         setValue('')
     }
     const handleKeyPress = (event) => {
         if(event.key === 'Enter'){
-            handleCompareClick()
+            console.log(String(suggestions[0]))
+            setValue(String(suggestions[0]))
+            setSuggestions([])
+            // handleCompareClick()
+
         }
     }
 
-    
     return(
         <div>
             <div className={`searchBar + ${passClass}`}>
@@ -92,8 +95,10 @@ const SearchBar = ({getAnswer, passClass}) => {
                 type="text"
                 value={value}
                 onChange={handleInputChange}
-                onKeyPress={handleKeyPress}
-                placeholder="Taper le pseudo du homie..."
+                onKeyDown={(e) => { 
+                    handleKeyPress(e)
+                }}    
+             placeholder="Taper le pseudo du homie..."
             />
                 <button onClick={handleCompareClick}>➤</button>
                 <ul>

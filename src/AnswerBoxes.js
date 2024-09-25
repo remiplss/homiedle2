@@ -20,17 +20,17 @@ export const AnswerBoxes = (props) => {
         } else {
             if(specAns === 'Anciennete'){
                 let arrow
-                answer[specAns][0] < finalAnswer[specAns][0] ? arrow = 'yearAfter' : arrow = 'yearBefore'
+                answer[specAns][0] < finalAnswer[specAns][0] ? arrow = 'yearBefore' : arrow = 'yearAfter'
                 return `makeRed ${arrow}`
             }
             if(specAns === 'Age'){
                 let arrow
-                answer[specAns][0] < finalAnswer[specAns][0] ? arrow = 'yearAfter' : arrow = 'yearBefore'
+                answer[specAns][0] < finalAnswer[specAns][0] ? arrow = 'yearBefore' : arrow = 'yearAfter'
                 return `makeRed ${arrow}`
             }
             if(specAns === 'NombredeTO'){
                 let arrow
-                answer[specAns][0] < finalAnswer[specAns][0] ? arrow = 'yearAfter' : arrow = 'yearBefore'
+                answer[specAns][0] < finalAnswer[specAns][0] ? arrow = 'yearBefore' : arrow = 'yearAfter'
                 return `makeRed ${arrow}`
             }
             else return 'makeRed';

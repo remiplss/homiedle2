@@ -56,7 +56,7 @@ function App() {
             setWin(false);
             tries.current = [];
             answer.current = finalData[Math.floor(Math.random() * finalData.length)];
-        }, 300)
+        }, 1000)
     }
     const getAnswer = (ans) => {
         console.log(ans)
