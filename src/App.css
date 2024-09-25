@@ -1,7 +1,7 @@
 .App {
   text-align: center;
-  background-image: url("./assets/img/LoLWallpaper.webp");
-  background-position: center;
+  background-image: url("./assets/img/3x.webp");
+  background-position: 0px -700px;
   background-size: cover;
   background-attachment: fixed;
   min-height: 100vh;
@@ -62,3 +62,25 @@
 }
 
 
+h1 {
+  font-size: 70px; /* You can adjust the size as needed */
+  margin-top: 0px;
+  background-color: #1d2227;
+  color: #074a5b;
+  -webkit-text-stroke: 0.01px #c77129;
+
+}
+
+.loading{
+  display: flex; /* Use flexbox */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  height: 100vh; /* Full height of the viewport */
+  width: 100vw; /* Full width of the viewport */
+  position: fixed; /* Fixed position to cover the entire screen */
+  top: 0; /* Align to the top */
+  left: 0; /* Align to the left */
+  background-color: rgba(255, 255, 255, 0.8); /* Optional: semi-transparent background */
+  z-index: 9999; /* Optional: ensure the loader is on top of other content */
+
+}

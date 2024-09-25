@@ -1,12 +1,49 @@
-import React, {useRef, useState} from 'react';
+import React, {useRef, useState, useEffect} from 'react';
 import './assets/searchBar.css';
-import {dataObjects} from "./data/dataObjects";
+import {FetchCSVData} from "./data/dataObjects";
+import {dataObjects} from "./data/temp";
+
 
 const SearchBar = ({getAnswer, passClass}) => {
+    const [data, setData] = useState([]);
+    const [finalData, setFinalData] = useState([]);
     const [value, setValue] = useState('')
     const [suggestions, setSuggestions] = useState([])
-    const options = dataObjects.map(el => el.champion);
+    // const options = dataObjects.map(el => el.pseudo);
+    const [options, setOptions] = useState([]);
     const usedValues = useRef([])
+
+    useEffect(() => {
+        fetch('https://script.google.com/macros/s/AKfycbyBy39HPGTQJvFIBUIpCapgv3ZYpdxqS6yqA-PxAlXiCZYG1e2zVvfTVsfu5Vzy1Nxg/exec?path=Sheet1&action=read') // Replace with your actual endpoint URL
+          .then(response => response.json())
+          .then(data => setData(data.data))
+          .catch(error => console.error('Error fetching data:', error));
+
+        //   const extractedPseudos = data.map(item => item["pseudo"]);
+
+      }, []);
+
+      useEffect(() => {
+        const extractedPseudos = data.map(item => [item["pseudo"]]);
+
+        setOptions(extractedPseudos)
+
+        const newData = data.map(item => ({
+            pseudo: [item.pseudo],
+            Elo: [item.Elo],
+            Golemique: [item.Golemique],
+            Age: [String(item.Age)],
+            NombredeTO: [String(item.NombredeTO)],
+            Role: [item.Role],
+            Preference: [item.Preference],
+            Anciennete: [String(item.Anciennete)],
+          }));
+      
+          // Update the state with the transformed data
+          setFinalData(newData);
+      }, [data]);
+
+
     const getSuggestions = (inputValue) => {
         const inputValueLowerCase = inputValue.trim().toLowerCase();
         return options.filter(option =>
@@ -29,11 +66,11 @@ const SearchBar = ({getAnswer, passClass}) => {
             return
         }
         else if(!options.find(el => el[0] == value) && suggestions.length > 0){
-            userAnswer = dataObjects.filter(el => el.champion == suggestions[0])
+            userAnswer = finalData.filter(el => el.pseudo == suggestions[0])
             usedValues.current.push(suggestions[0].join(''))
         }
         else{
-            userAnswer = dataObjects.filter(el => el.champion == value)
+            userAnswer = finalData.filter(el => el.pseudo == value)
             usedValues.current.push(value)
         }
         getAnswer(userAnswer)
@@ -46,6 +83,7 @@ const SearchBar = ({getAnswer, passClass}) => {
         }
     }
 
+    
     return(
         <div>
             <div className={`searchBar + ${passClass}`}>
@@ -54,7 +92,7 @@ const SearchBar = ({getAnswer, passClass}) => {
                 value={value}
                 onChange={handleInputChange}
                 onKeyPress={handleKeyPress}
-                placeholder="Type champion name..."
+                placeholder="Taper le pseudo du homie..."
             />
                 <button onClick={handleCompareClick}>➤</button>
                 <ul>
