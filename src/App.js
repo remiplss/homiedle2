@@ -16,7 +16,6 @@ function App() {
 
 
     useEffect(() => {
-        console.log("test")
         fetch('https://script.google.com/macros/s/AKfycbyBy39HPGTQJvFIBUIpCapgv3ZYpdxqS6yqA-PxAlXiCZYG1e2zVvfTVsfu5Vzy1Nxg/exec?path=Sheet1&action=read') // Replace with your actual endpoint URL
             .then(response => response.json())
             .then(data => setData(data.data))
@@ -43,6 +42,7 @@ function App() {
 
     useEffect(() => {
         if (finalData) {
+
             // When finalData is loaded, set the ref
             answer.current = finalData[Math.floor(Math.random() * finalData.length)];
             console.log("finalData has been loaded and the ref is set:", answer.current);
@@ -59,6 +59,7 @@ function App() {
         }, 300)
     }
     const getAnswer = (ans) => {
+        console.log(ans)
         setUserAnswer(ans)
     }
     const displayAnswer = (ans) => {
@@ -76,6 +77,8 @@ function App() {
             }, 1400)
 
         }, 2500)
+       
+
         return displayAnswer(userAnswer);
     }, [userAnswer]);
 

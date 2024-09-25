@@ -59,19 +59,22 @@ const SearchBar = ({getAnswer, passClass}) => {
         setSuggestions([])
     }
     const handleCompareClick = (viaEnter, checkMore) => {
+        
+
         let userAnswer
-        if(!options.find(el => el[0] === value) && suggestions.length < 1){
+        if(!options.find(el => el[0] == value) && suggestions.length < 1){
             return
         }
-        else if(!options.find(el => el[0] === value) && suggestions.length > 0){
-            userAnswer = finalData.filter(el => el.pseudo === suggestions[0])
+        else if(!options.find(el => el[0] == value) && suggestions.length > 0){
+            userAnswer = finalData.filter(el => el.pseudo == suggestions[0])
             usedValues.current.push(suggestions[0].join(''))
         }
         else{
-            userAnswer = finalData.filter(el => el.pseudo === value)
+            userAnswer = finalData.filter(el => el.pseudo == value)
             usedValues.current.push(value)
         }
         getAnswer(userAnswer)
+        console.log(value)
         setSuggestions([])
         setValue('')
     }
