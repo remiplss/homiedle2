@@ -28,8 +28,6 @@ export const AnswerBoxes = (props) => {
                 return `makeRed ${arrow}`
             }
             if (specAns === 'NombredeTO') {
-                console.log(finalAnswer[specAns][0])
-                    console.log(answer[specAns][0])
                 if (finalAnswer[specAns][0] >= 99 && answer[specAns][0] >= 99) {
                     return 'makeGreen'
                 }

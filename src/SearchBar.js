@@ -2,7 +2,7 @@ import React, {useRef, useState, useEffect} from 'react';
 import './assets/searchBar.css';
 
 
-const SearchBar = ({getAnswer, passClass, data, setData}) => {
+const SearchBar = ({getAnswer, passClass, data, setData, count, setCount}) => {
     // const [data, setData] = useState([]);
     const [finalData, setFinalData] = useState([]);
     const [value, setValue] = useState('')
@@ -61,7 +61,7 @@ const SearchBar = ({getAnswer, passClass, data, setData}) => {
     }
     const handleCompareClick = () => {
         
-
+setCount(count+1)
         let userAnswer
         if(!options.find(el => el[0] == value) && suggestions.length < 1){
             return

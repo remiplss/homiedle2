@@ -14,6 +14,8 @@ function App() {
     const tries = useRef([])
     const [win, setWin] = useState(false)
     const [init, setInit] = useState(true);
+    const [count, setCount] = useState(0);
+
 
 
 console.log(finalData.length)
@@ -48,7 +50,7 @@ console.log(finalData.length)
             // When finalData is loaded, set the ref
             answer.current = finalData[Math.floor(Math.random() * finalData.length)];
         }
-    }, [finalData]);
+    }, [data]);
 
     const initReset = () => {
         setTimeout(() => {
@@ -88,8 +90,7 @@ console.log(finalData.length)
 
         return displayAnswer(userAnswer);
     }, [userAnswer]);
-
-
+    console.log(answer.current)
     return (
         <div className="App">
             {finalData.length === 0 ?
@@ -100,7 +101,8 @@ console.log(finalData.length)
                    </div>):
         (<div>
                     <h1>Homiedle</h1>
-                    {!win && <SearchBar passClass={winSpin} getAnswer={getAnswer} data={data} setData={setData} />}
+                    {count >= 1 && <p>Indice: La premère lettre du pseudo est: {JSON.stringify([answer.current.pseudo])[3]}</p>}
+                    {!win && <SearchBar passClass={winSpin} getAnswer={getAnswer} data={data} setData={setData} count={count} setCount={setCount}/>}
                     {win && <button className='initAgain' onClick={initReset}>Rejouer!</button>}
                     <div className={`tableContainer ${userAnswer !== '' ? 'scrollable' : ''}`}>
                     <table>

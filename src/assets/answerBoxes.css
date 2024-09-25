@@ -34,6 +34,7 @@ td img{
 }
 
 table{
+    border-spacing: 10px;
     width: 590px;
     margin: auto;
     overflow-x: scroll;
