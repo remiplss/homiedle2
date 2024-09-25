@@ -2,8 +2,8 @@ import React, {useRef, useState, useEffect} from 'react';
 import './assets/searchBar.css';
 
 
-const SearchBar = ({getAnswer, passClass}) => {
-    const [data, setData] = useState([]);
+const SearchBar = ({getAnswer, passClass, data, setData}) => {
+    // const [data, setData] = useState([]);
     const [finalData, setFinalData] = useState([]);
     const [value, setValue] = useState('')
     const [suggestions, setSuggestions] = useState([])
@@ -80,10 +80,12 @@ const SearchBar = ({getAnswer, passClass}) => {
     }
     const handleKeyPress = (event) => {
         if(event.key === 'Enter'){
-            console.log(String(suggestions[0]))
+            if(value){
             setValue(String(suggestions[0]))
-            setSuggestions([])
+            // setSuggestions([])
             // handleCompareClick()
+            }
+
 
         }
     }

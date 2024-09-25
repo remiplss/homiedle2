@@ -13,8 +13,10 @@ function App() {
     const [winSpin, setWinSpin] = useState('')
     const tries = useRef([])
     const [win, setWin] = useState(false)
+    const [init, setInit] = useState(true);
 
 
+console.log(finalData.length)
     useEffect(() => {
         fetch('https://script.google.com/macros/s/AKfycbyBy39HPGTQJvFIBUIpCapgv3ZYpdxqS6yqA-PxAlXiCZYG1e2zVvfTVsfu5Vzy1Nxg/exec?path=Sheet1&action=read') // Replace with your actual endpoint URL
             .then(response => response.json())
@@ -45,7 +47,6 @@ function App() {
 
             // When finalData is loaded, set the ref
             answer.current = finalData[Math.floor(Math.random() * finalData.length)];
-            console.log("finalData has been loaded and the ref is set:", answer.current);
         }
     }, [finalData]);
 
@@ -61,13 +62,19 @@ function App() {
     const getAnswer = (ans) => {
         console.log(ans)
         setUserAnswer(ans)
+        setInit(false)
+
     }
     const displayAnswer = (ans) => {
         if (ans !== '') tries.current.push(ans);
         return tries.current.map((el, index) => (
-
+         <> 
             <AnswerBoxes key={index} finalAnswer={answer.current} answer={el} />
+            
+            </> 
+
         )).reverse();
+
     };
     const ansBox = useMemo(() => {
         if (JSON.stringify(userAnswer) === JSON.stringify([answer.current])) setTimeout(() => {
@@ -93,10 +100,25 @@ function App() {
                    </div>):
         (<div>
                     <h1>Homiedle</h1>
-                    {!win && <SearchBar passClass={winSpin} getAnswer={getAnswer} />}
+                    {!win && <SearchBar passClass={winSpin} getAnswer={getAnswer} data={data} setData={setData} />}
                     {win && <button className='initAgain' onClick={initReset}>Rejouer!</button>}
                     <div className={`tableContainer ${userAnswer !== '' ? 'scrollable' : ''}`}>
+                    <table>
+            <tbody>
+                <tr>
+                    <th>Pseudo</th>
+                    <th>Peak Elo</th>
+                    <th>Golémique</th>
+                    <th>Age</th>
+                    <th>Nombre de TO</th>
+                    <th>Rôle (viewer, modo, VIP)</th>
+                    <th>Préférence (pipi, caca, prout, vomit, sperme) </th>
+                    <th>Ancienneté</th>
+                </tr>
                         {ansBox}
+
+                        </tbody>
+            </table>
 
                     </div>
                 </div>)}
