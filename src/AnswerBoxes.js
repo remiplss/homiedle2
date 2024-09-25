@@ -35,7 +35,7 @@ export const AnswerBoxes = (props) => {
                     let arrow
                     
 
-                    answer[specAns][0] < finalAnswer[specAns][0] ? arrow = 'yearAfter' : arrow = 'yearBefore'
+                    answer[specAns][0] < finalAnswer[specAns][0] ? arrow = 'yearBefore' : arrow = 'yearAfter'
                     return `makeRed ${arrow}`
                 }}
                 
