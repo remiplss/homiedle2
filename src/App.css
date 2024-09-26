@@ -1,7 +1,7 @@
 .App {
   text-align: center;
-  background-image: url("./assets/img/Screen_Shot_2019-08-29_at_2.44.51_PM.jpg");
-  background-position: 0px -100px;
+  background-image: url("./assets/img/image.png");
+  /* background-position: 0px -100px; */
   background-size: cover;
   background-attachment: fixed;
   min-height: 100vh;
