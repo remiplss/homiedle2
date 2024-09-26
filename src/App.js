@@ -15,10 +15,13 @@ function App() {
     const [win, setWin] = useState(false)
     const [init, setInit] = useState(true);
     const [count, setCount] = useState(0);
+    const [isPopupVisible, setIsPopupVisible] = useState(false);
 
 
+    const togglePopupVisibility = () => {
+        setIsPopupVisible(!isPopupVisible); // Toggle between true and false
+      };
 
-console.log(answer)
     useEffect(() => {
         fetch('https://script.google.com/macros/s/AKfycbyBy39HPGTQJvFIBUIpCapgv3ZYpdxqS6yqA-PxAlXiCZYG1e2zVvfTVsfu5Vzy1Nxg/exec?path=Sheet1&action=read') // Replace with your actual endpoint URL
             .then(response => response.json())
@@ -90,6 +93,7 @@ console.log(answer)
 
         return displayAnswer(userAnswer);
     }, [userAnswer]);
+    const listItems = ['Iron', 'Bronze', 'Silver', 'Gold', 'Platinum', 'Diamond', 'Gold', 'Platinum', 'Diamond', 'Gold', 'Platinum', 'Diamond', 'Gold', 'Platinum', 'Diamond', 'Gold', 'Platinum', 'Diamond'];
 
     return (
         <div className="App">
@@ -101,6 +105,27 @@ console.log(answer)
                    </div>):
         (<div>
                     <h1>Homiedle</h1>
+                    <button className="initAgain" onClick={togglePopupVisibility}>
+        {isPopupVisible ? 'Close' : 'Liste Homies'}
+      </button>
+
+      {/* Step 3: Conditionally render the popup and overlay */}
+      {isPopupVisible && (
+        <>
+          {/* Overlay for dimming the background */}
+          <div className="popup-overlay" onClick={togglePopupVisibility}></div>
+          
+          {/* Popup box */}
+          <div className="popup-box">
+            <ul>
+              {finalData.map((item, index) => (
+                <li key={index}>{item.pseudo}</li>
+              ))}
+            </ul>
+            <button className="initAgain" onClick={togglePopupVisibility} >Close</button>
+          </div>
+        </>
+      )}
                     {count >= 3 && <p>Indice: La premère lettre du pseudo est: {JSON.stringify([answer.current.pseudo])[3]}</p>}
                     {!win && <SearchBar passClass={winSpin} getAnswer={getAnswer} data={data} setData={setData} count={count} setCount={setCount}/>}
                     {win && <button className='initAgain' onClick={initReset}>Rejouer!</button>}
