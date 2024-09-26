@@ -23,8 +23,7 @@ export const AnswerBoxes = (props) => {
 
     // const champName = answer.pseudo.join('').replace(/[.'" ]/g, '')
     const adjustClass = (specAns) => {
-        const index1 = eloOrder.indexOf(answer[specAns][0]);
-        const index2 = eloOrder.indexOf(finalAnswer[specAns][0]);
+       
 
         const commonElements = answer[specAns].filter((el) => finalAnswer[specAns].includes(el));
         const areEqual = answer[specAns].length === finalAnswer[specAns].length && commonElements.length === finalAnswer[specAns].length
@@ -43,15 +42,18 @@ export const AnswerBoxes = (props) => {
                 answer[specAns][0] < finalAnswer[specAns][0] ? arrow = 'yearBefore' : arrow = 'yearAfter'
                 return `makeRed ${arrow}`
             }
-            console.log(answer)
             if (specAns === 'Elo') {
+                const index1 = eloOrder.indexOf(answer[specAns][0]);
+                const index2 = eloOrder.indexOf(finalAnswer[specAns][0]);
+                
                 if (index1 < index2) {
-                    return `makeRed yearAfter`
-                  } else if (index1 > index2) {
                     return `makeRed yearBefore`
+                  } else if (index1 > index2) {
+                    return `makeRed yearAfter`
                   } else {
                      return 'makeGreen'
                   }
+                  
         }
             //     if (finalAnswer[specAns][0] >= 99 && answer[specAns][0] >= 99) {
             //         return 'makeGreen'
