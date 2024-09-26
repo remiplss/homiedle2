@@ -34,7 +34,7 @@ console.log(finalData)
             Elo: [item.Elo],
             Couleur: [item.Couleur],
             Age: [String(item.Age)],
-            Activite: [String(item.Activite)],
+            Activite: [item.Activite],
             Badge: [item.Badge],
             Role: [item.Role],
             Anciennete: [String(item.Anciennete)],

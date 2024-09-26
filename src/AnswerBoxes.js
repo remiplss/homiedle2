@@ -30,7 +30,7 @@ export const AnswerBoxes = (props) => {
             // if (specAns === 'NombredeTO') {
             //     if (finalAnswer[specAns][0] >= 99 && answer[specAns][0] >= 99) {
             //         return 'makeGreen'
-            //     }
+            //     }f
             //     else {
             //         let arrow
                     
