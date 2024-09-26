@@ -27,17 +27,17 @@ export const AnswerBoxes = (props) => {
                 answer[specAns][0] < finalAnswer[specAns][0] ? arrow = 'yearBefore' : arrow = 'yearAfter'
                 return `makeRed ${arrow}`
             }
-            if (specAns === 'NombredeTO') {
-                if (finalAnswer[specAns][0] >= 99 && answer[specAns][0] >= 99) {
-                    return 'makeGreen'
-                }
-                else {
-                    let arrow
+            // if (specAns === 'NombredeTO') {
+            //     if (finalAnswer[specAns][0] >= 99 && answer[specAns][0] >= 99) {
+            //         return 'makeGreen'
+            //     }
+            //     else {
+            //         let arrow
                     
 
-                    answer[specAns][0] < finalAnswer[specAns][0] ? arrow = 'yearBefore' : arrow = 'yearAfter'
-                    return `makeRed ${arrow}`
-                }}
+            //         answer[specAns][0] < finalAnswer[specAns][0] ? arrow = 'yearBefore' : arrow = 'yearAfter'
+            //         return `makeRed ${arrow}`
+            //     }}
                 
             else return 'makeRed';
 
@@ -60,7 +60,7 @@ const displayedAnswer = (property) => {
     return (
         <td className={adjustClass(property)}>
             <div>
-                {property !== "NombredeTO" ? ((answer[property]).length > 1 ? (answer[property]).join(', ') : answer[property]) : (answer[property] >= 99 ? <>+99</> : ((answer[property]).length > 1 ? (answer[property]).join(', ') : answer[property]))}
+                {((answer[property]).length > 1 ? (answer[property]).join(', ') : answer[property])}
                 {/* {property === "NombredeTO" && answer[property] >= 99 && <>+</>} */}
             </div>
         </td>
@@ -74,11 +74,11 @@ return (
 
             {displayedAnswer('pseudo')}
             {displayedAnswer('Elo')}
-            {displayedAnswer('Golemique')}
+            {displayedAnswer('Couleur')}
             {displayedAnswer('Age')}
-            {displayedAnswer('NombredeTO')}
+            {displayedAnswer('Activite')}
+            {displayedAnswer('Badge')}
             {displayedAnswer('Role')}
-            {displayedAnswer('Preference')}
             {displayedAnswer('Anciennete')}
         </tr>
 

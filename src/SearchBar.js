@@ -29,11 +29,11 @@ const SearchBar = ({getAnswer, passClass, data, setData, count, setCount}) => {
         const newData = data.map(item => ({
             pseudo: [item.pseudo],
             Elo: [item.Elo],
-            Golemique: [item.Golemique],
+            Couleur: [item.Couleur],
             Age: [String(item.Age)],
-            NombredeTO: [String(item.NombredeTO)],
+            Activite: [String(item.Activite)],
+            Badge: [item.Badge],
             Role: [item.Role],
-            Preference: [item.Preference],
             Anciennete: [String(item.Anciennete)],
           }));
       

@@ -18,7 +18,7 @@ function App() {
 
 
 
-console.log(finalData.length)
+console.log(finalData)
     useEffect(() => {
         fetch('https://script.google.com/macros/s/AKfycbyBy39HPGTQJvFIBUIpCapgv3ZYpdxqS6yqA-PxAlXiCZYG1e2zVvfTVsfu5Vzy1Nxg/exec?path=Sheet1&action=read') // Replace with your actual endpoint URL
             .then(response => response.json())
@@ -32,11 +32,11 @@ console.log(finalData.length)
         const newData = data.map(item => ({
             pseudo: [item.pseudo],
             Elo: [item.Elo],
-            Golemique: [item.Golemique],
+            Couleur: [item.Couleur],
             Age: [String(item.Age)],
-            NombredeTO: [String(item.NombredeTO)],
+            Activite: [String(item.Activite)],
+            Badge: [item.Badge],
             Role: [item.Role],
-            Preference: [item.Preference],
             Anciennete: [String(item.Anciennete)],
         }));
 
@@ -63,7 +63,6 @@ console.log(finalData.length)
         }, 1000)
     }
     const getAnswer = (ans) => {
-        console.log(ans)
         setUserAnswer(ans)
         setInit(false)
 
@@ -91,7 +90,7 @@ console.log(finalData.length)
 
         return displayAnswer(userAnswer);
     }, [userAnswer]);
-    console.log(answer.current)
+
     return (
         <div className="App">
             {finalData.length === 0 ?
@@ -111,11 +110,11 @@ console.log(finalData.length)
                 <tr className='titre'>
                     <th>Pseudo</th>
                     <th>Peak Elo</th>
-                    <th>Golémique</th>
-                    <th>Age</th>
-                    <th>Nombre de TO</th>
-                    <th>Rôle (viewer, modo, VIP)</th>
-                    <th>Préférence (pipi, caca, prout, vomit, sperme) </th>
+                    <th>Couleur Pseudo</th>
+                    <th>Date de naissance</th>
+                    <th>Activité (chomeur, étudiant, travail)</th>
+                    <th>Badge (viewer, modo, VIP)</th>
+                    <th>Rôle LOL </th>
                     <th>Ancienneté</th>
                 </tr>
                         {ansBox}
