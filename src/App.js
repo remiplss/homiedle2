@@ -18,7 +18,7 @@ function App() {
 
 
 
-console.log(finalData)
+console.log(answer)
     useEffect(() => {
         fetch('https://script.google.com/macros/s/AKfycbyBy39HPGTQJvFIBUIpCapgv3ZYpdxqS6yqA-PxAlXiCZYG1e2zVvfTVsfu5Vzy1Nxg/exec?path=Sheet1&action=read') // Replace with your actual endpoint URL
             .then(response => response.json())

@@ -9,7 +9,7 @@ export const AnswerBoxes = (props) => {
 
     // const champName = answer.pseudo.join('').replace(/[.'" ]/g, '')
     const adjustClass = (specAns) => {
-        
+        // console.log(answer)
         const commonElements = answer[specAns].filter((el) => finalAnswer[specAns].includes(el));
         const areEqual = answer[specAns].length === finalAnswer[specAns].length && commonElements.length === finalAnswer[specAns].length
         if (areEqual) {
