@@ -84,3 +84,11 @@ h1 {
   z-index: 9999; /* Optional: ensure the loader is on top of other content */
 
 }
+
+
+.titre{
+
+  -webkit-text-stroke:  0.3px #000000;
+  font-weight: 500;
+  font-size: larger;
+}

@@ -59,6 +59,7 @@ console.log(finalData.length)
             setWin(false);
             tries.current = [];
             answer.current = finalData[Math.floor(Math.random() * finalData.length)];
+            setCount(0)
         }, 1000)
     }
     const getAnswer = (ans) => {
@@ -101,13 +102,13 @@ console.log(finalData.length)
                    </div>):
         (<div>
                     <h1>Homiedle</h1>
-                    {count >= 1 && <p>Indice: La premère lettre du pseudo est: {JSON.stringify([answer.current.pseudo])[3]}</p>}
+                    {count >= 3 && <p>Indice: La premère lettre du pseudo est: {JSON.stringify([answer.current.pseudo])[3]}</p>}
                     {!win && <SearchBar passClass={winSpin} getAnswer={getAnswer} data={data} setData={setData} count={count} setCount={setCount}/>}
                     {win && <button className='initAgain' onClick={initReset}>Rejouer!</button>}
                     <div className={`tableContainer ${userAnswer !== '' ? 'scrollable' : ''}`}>
                     <table>
-            <tbody>
-                <tr>
+            <tbody >
+                <tr className='titre'>
                     <th>Pseudo</th>
                     <th>Peak Elo</th>
                     <th>Golémique</th>
