@@ -112,7 +112,7 @@ function App() {
         (<div>
                     <h1>Homiedle</h1>
 
-{answer.current && count >= 1 && (
+{answer.current && count >= 3 && (
   <div className='indice'>
     <div>Indice: La première lettre du pseudo est:</div> 
     {indice === false 
