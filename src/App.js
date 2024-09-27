@@ -99,7 +99,6 @@ function App() {
         return displayAnswer(userAnswer);
     }, [userAnswer]);
     
-    console.log(answer.current)
     const listItems = ['Iron', 'Bronze', 'Silver', 'Gold', 'Platinum', 'Diamond', 'Gold', 'Platinum', 'Diamond', 'Gold', 'Platinum', 'Diamond', 'Gold', 'Platinum', 'Diamond', 'Gold', 'Platinum', 'Diamond'];
     return (
         <div className="App">

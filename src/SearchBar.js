@@ -55,7 +55,6 @@ const SearchBar = ({getAnswer, passClass, data, setData, count, setCount}) => {
         setSuggestions(getSuggestions(inputValue))
     }
     const handleSuggestionClick = (suggestion) => {
-        console.log(suggestion)
         setValue(suggestion)
         setSuggestions([])
     }

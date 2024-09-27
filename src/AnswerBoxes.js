@@ -12,7 +12,7 @@ export const AnswerBoxes = (props) => {
         'Bronze',
         'Silver',
         'Gold',
-        'Platinum',
+        'Platinium',
         'Emeraude',
         'Diamant',
         'Master',
