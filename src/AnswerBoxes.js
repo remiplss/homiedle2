@@ -107,6 +107,8 @@ return (
             {displayedAnswer('Badge')}
             {displayedAnswer('Role')}
             {displayedAnswer('Anciennete')}
+            {/* {displayedAnswer('Sub')} */}
+
         </tr>
 
     </>

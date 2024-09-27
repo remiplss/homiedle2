@@ -17,6 +17,10 @@ function App() {
     const [count, setCount] = useState(0);
     const [isPopupVisible, setIsPopupVisible] = useState(false);
     const [indice, setIndice] = useState(false);
+    const [random, setRandom] = useState([]);
+    const [finalRandom, setFinalRandom] = useState([]);
+    const [choice, setChoice] = useState(false);
+
 
 
     const toggleIndice = () => {
@@ -26,13 +30,24 @@ function App() {
     const togglePopupVisibility = () => {
         setIsPopupVisible(!isPopupVisible); // Toggle between true and false
       };
+      const toggleChoice = (choix) => {
+        setChoice(choix); // Toggle between true and false
+        initReset()
+      };
 
     useEffect(() => {
-        fetch('https://script.google.com/macros/s/AKfycbyBy39HPGTQJvFIBUIpCapgv3ZYpdxqS6yqA-PxAlXiCZYG1e2zVvfTVsfu5Vzy1Nxg/exec?path=Sheet1&action=read') // Replace with your actual endpoint URL
+        fetch('https://script.google.com/macros/s/AKfycbzGbxc6Wa5TqjgaJUz55x1MFI7tuFTE6ZxuLMmgUYNKfNlFhUSQys382jL36BAjqjJb/exec?path=Sheet1&action=read') // Replace with your actual endpoint URL
             .then(response => response.json())
             .then(data => setData(data.data))
             .catch(error => console.error('Error fetching data:', error));
 
+    }, []);
+
+    useEffect(() => {
+        fetch('https://script.google.com/macros/s/AKfycbwb5kKLZoMslmHyvV7FGC0UXTPEe8gJ44cc9Q7dwts4lYJK3n9UMsAmABM9jBDdZ2nK/exec')
+            .then(response => response.json())
+            .then(data => setRandom(data))
+            .catch(error => console.error('Error fetching data:', error));
     }, []);
 
     useEffect(() => {
@@ -53,12 +68,38 @@ function App() {
     }, [data]);
 
     useEffect(() => {
-        if (finalData) {
+        // Map over the original data and convert each value into an array
+        let newRandom;
+
+        newRandom = {
+            pseudo: [random[1]],
+            Elo: [random[2]],
+            Couleur: [random[3]],
+            Age: [String(random[4])],
+            Activite: [random[5]],
+            Badge: [random[6]],
+            Role: [random[7]],
+            Anciennete: [String(random[8])],
+        };
+
+
+        // Update the state with the transformed data
+        setFinalRandom(newRandom);
+    }, [random]);
+
+console.log(finalData[Math.floor(Math.random() * finalData.length)])
+console.log(finalRandom)
+
+    useEffect(() => {
+        if (finalData && random) {
 
             // When finalData is loaded, set the ref
+            if(choice === false)
             answer.current = finalData[Math.floor(Math.random() * finalData.length)];
+        else
+        answer.current = finalRandom;
         }
-    }, [data]);
+    }, [data,random, choice]);
 
     const initReset = () => {
         setTimeout(() => {
@@ -68,6 +109,7 @@ function App() {
             tries.current = [];
             answer.current = finalData[Math.floor(Math.random() * finalData.length)];
             setCount(0)
+            setIndice(false)
         }, 1000)
     }
     const getAnswer = (ans) => {
@@ -98,8 +140,6 @@ function App() {
 
         return displayAnswer(userAnswer);
     }, [userAnswer]);
-    
-    const listItems = ['Iron', 'Bronze', 'Silver', 'Gold', 'Platinum', 'Diamond', 'Gold', 'Platinum', 'Diamond', 'Gold', 'Platinum', 'Diamond', 'Gold', 'Platinum', 'Diamond', 'Gold', 'Platinum', 'Diamond'];
     return (
         <div className="App">
             {finalData.length === 0 ?
@@ -108,7 +148,12 @@ function App() {
                     size={150}/>
 
                    </div>):
-        (<div>
+        (<div >
+            <div className='container'>
+            <h3 onClick={() =>toggleChoice(true)} className={choice === true ? 'h3On' : ''}>Daily</h3>
+            <h3 onClick={() =>toggleChoice(false)} className={choice === false ? 'h3On' : ''}>Illimité</h3>
+
+            </div>
                     <h1>Homiedle</h1>
 
 {answer.current && count >= 3 && (

@@ -70,6 +70,32 @@ h1 {
   -webkit-text-stroke: 0.01px #c77129;
 
 }
+h3{
+  background-color: #1d2227;
+  color: #074a5b;
+  /* -webkit-text-stroke: 0.001px #c77129; */
+  margin: 0px;
+  transition: color 0.3s, text-decoration 0.3s; /* Smooth transition for color and underline */
+
+}
+h3:hover {
+  text-decoration: underline; /* Add underline effect */
+  color :#c77129;
+}
+
+.h3On {
+  text-decoration: underline; /* Add underline effect */
+  color :#c77129;
+}
+
+.container {
+  display: flex; /* Use flexbox for horizontal alignment */
+  gap: 20px;    /* Space between the headings */
+  flex-direction: row;
+  justify-content: center;
+  background-color: #1d2227;
+
+}
 
 .loading{
   display: flex; /* Use flexbox */
