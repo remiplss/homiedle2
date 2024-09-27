@@ -87,8 +87,7 @@ function App() {
         setFinalRandom(newRandom);
     }, [random]);
 
-console.log(finalData[Math.floor(Math.random() * finalData.length)])
-console.log(finalRandom)
+
 
     useEffect(() => {
         if (finalData && random) {
