@@ -93,6 +93,13 @@ h1 {
   font-size: larger;
   background-color: #0b0b0b8c;
 }
+.indice{
+  -webkit-text-stroke:  0.3px #000000;
+  font-weight: 500;
+  font-size: larger;
+  background-color: #0b0b0b8c;
+}
+
 
 /* Overlay to dim the background */
 .popup-overlay {

@@ -16,7 +16,12 @@ function App() {
     const [init, setInit] = useState(true);
     const [count, setCount] = useState(0);
     const [isPopupVisible, setIsPopupVisible] = useState(false);
+    const [indice, setIndice] = useState(false);
 
+
+    const toggleIndice = () => {
+        setIndice(!indice); // Toggle between true and false
+      };
 
     const togglePopupVisibility = () => {
         setIsPopupVisible(!isPopupVisible); // Toggle between true and false
@@ -93,8 +98,9 @@ function App() {
 
         return displayAnswer(userAnswer);
     }, [userAnswer]);
+    
+    console.log(answer.current)
     const listItems = ['Iron', 'Bronze', 'Silver', 'Gold', 'Platinum', 'Diamond', 'Gold', 'Platinum', 'Diamond', 'Gold', 'Platinum', 'Diamond', 'Gold', 'Platinum', 'Diamond', 'Gold', 'Platinum', 'Diamond'];
-
     return (
         <div className="App">
             {finalData.length === 0 ?
@@ -105,6 +111,15 @@ function App() {
                    </div>):
         (<div>
                     <h1>Homiedle</h1>
+
+{answer.current && count >= 1 && (
+  <div className='indice'>
+    <div>Indice: La première lettre du pseudo est:</div> 
+    {indice === false 
+      ? <div onClick={toggleIndice}>Cliquer pour voir</div> 
+      : <div>{JSON.stringify([answer.current.pseudo])[3]}</div>}
+  </div>
+)}
                     <button className="initAgain" onClick={togglePopupVisibility}>
         {isPopupVisible ? 'Close' : 'Liste Homies'}
       </button>
@@ -126,7 +141,6 @@ function App() {
           </div>
         </>
       )}
-                    {count >= 3 && <p>Indice: La premère lettre du pseudo est: {JSON.stringify([answer.current.pseudo])[3]}</p>}
                     {!win && <SearchBar passClass={winSpin} getAnswer={getAnswer} data={data} setData={setData} count={count} setCount={setCount}/>}
                     {win && <button className='initAgain' onClick={initReset}>Rejouer!</button>}
                     <div className={`tableContainer ${userAnswer !== '' ? 'scrollable' : ''}`}>
