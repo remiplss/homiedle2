@@ -1,7 +1,7 @@
 import './App.css';
 import { AnswerBoxes } from "./AnswerBoxes";
 import SearchBar from "./SearchBar";
-import React, { useEffect, useMemo, useRef, useState  } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import FadeLoader from "react-spinners/ClipLoader";
 import Timer from './Timer';
 
@@ -26,15 +26,15 @@ function App() {
 
     const toggleIndice = () => {
         setIndice(!indice); // Toggle between true and false
-      };
+    };
 
     const togglePopupVisibility = () => {
         setIsPopupVisible(!isPopupVisible); // Toggle between true and false
-      };
-      const toggleChoice = (choix) => {
+    };
+    const toggleChoice = (choix) => {
         setChoice(choix); // Toggle between true and false
         initReset()
-      };
+    };
 
     useEffect(() => {
         fetch('https://script.google.com/macros/s/AKfycbzGbxc6Wa5TqjgaJUz55x1MFI7tuFTE6ZxuLMmgUYNKfNlFhUSQys382jL36BAjqjJb/exec?path=Sheet1&action=read') // Replace with your actual endpoint URL
@@ -94,12 +94,12 @@ function App() {
         if (finalData && random) {
 
             // When finalData is loaded, set the ref
-            if(choice === false)
-            answer.current = finalData[Math.floor(Math.random() * finalData.length)];
-        else
-        answer.current = finalRandom;
+            if (choice === false)
+                answer.current = finalData[Math.floor(Math.random() * finalData.length)];
+            else
+                answer.current = finalRandom;
         }
-    }, [data,random, choice]);
+    }, [data, random, choice]);
 
     const initReset = () => {
         setTimeout(() => {
@@ -120,10 +120,10 @@ function App() {
     const displayAnswer = (ans) => {
         if (ans !== '') tries.current.push(ans);
         return tries.current.map((el, index) => (
-         <> 
-            <AnswerBoxes key={index} finalAnswer={answer.current} answer={el} />
-            
-            </> 
+            <>
+                <AnswerBoxes key={index} finalAnswer={answer.current} answer={el} />
+
+            </>
 
         )).reverse();
 
@@ -136,7 +136,7 @@ function App() {
             }, 1400)
 
         }, 2500)
-       
+
 
         return displayAnswer(userAnswer);
     }, [userAnswer]);
@@ -145,66 +145,66 @@ function App() {
             {finalData.length === 0 ?
                 (<div className='loading'><FadeLoader
                     color={"#000000"}
-                    size={150}/>
+                    size={150} />
 
-                   </div>):
-        (<div >
-            <div className='container'>
-            <h3 onClick={() =>toggleChoice(true)} className={choice === true ? 'h3On' : ''}>Daily</h3>
-            <h3 onClick={() =>toggleChoice(false)} className={choice === false ? 'h3On' : ''}>Illimité</h3>
+                </div>) :
+                (<div >
+                    <div className='container'>
+                        <h3 onClick={() => toggleChoice(true)} className={choice === true ? 'h3On' : ''}>Daily</h3>
+                        <h3 onClick={() => toggleChoice(false)} className={choice === false ? 'h3On' : ''}>Illimité</h3>
 
-            </div>
+                    </div>
                     <h1>Homiedle</h1>
 
-{answer.current && count >= 3 && (
-  <div className='indice'>
-    <div>Indice: La première lettre du pseudo est:</div> 
-    {indice === false 
-      ? <div onClick={toggleIndice}>Cliquer pour voir</div> 
-      : <div>{JSON.stringify([answer.current.pseudo])[3]}</div>}
-  </div>
-)}
-<Timer/>
+                    {answer.current && count >= 3 && (
+                        <div className='indice'>
+                            <div>Indice: La première lettre du pseudo est:</div>
+                            {indice === false
+                                ? <div onClick={toggleIndice}>Cliquer pour voir</div>
+                                : <div>{JSON.stringify([answer.current.pseudo])[3]}</div>}
+                        </div>
+                    )}
+                    {choice === true &&<Timer />}
                     <button className="initAgain" onClick={togglePopupVisibility}>
-        {isPopupVisible ? 'Close' : 'Liste Homies'}
-      </button>
+                        {isPopupVisible ? 'Close' : 'Liste Homies'}
+                    </button>
 
-      {/* Step 3: Conditionally render the popup and overlay */}
-      {isPopupVisible && (
-        <>
-          {/* Overlay for dimming the background */}
-          <div className="popup-overlay" onClick={togglePopupVisibility}></div>
-          
-          {/* Popup box */}
-          <div className="popup-box">
-            <ul>
-              {finalData.map((item, index) => (
-                <li key={index}>{item.pseudo}</li>
-              ))}
-            </ul>
-            <button className="initAgain" onClick={togglePopupVisibility} >Close</button>
-          </div>
-        </>
-      )}
-                    {!win && <SearchBar passClass={winSpin} getAnswer={getAnswer} data={data} setData={setData} count={count} setCount={setCount}/>}
+                    {/* Step 3: Conditionally render the popup and overlay */}
+                    {isPopupVisible && (
+                        <>
+                            {/* Overlay for dimming the background */}
+                            <div className="popup-overlay" onClick={togglePopupVisibility}></div>
+
+                            {/* Popup box */}
+                            <div className="popup-box">
+                                <ul>
+                                    {finalData.map((item, index) => (
+                                        <li key={index}>{item.pseudo}</li>
+                                    ))}
+                                </ul>
+                                <button className="initAgain" onClick={togglePopupVisibility} >Close</button>
+                            </div>
+                        </>
+                    )}
+                    {!win && <SearchBar passClass={winSpin} getAnswer={getAnswer} data={data} setData={setData} count={count} setCount={setCount} />}
                     {win && <button className='initAgain' onClick={initReset}>Rejouer!</button>}
                     <div className={`tableContainer ${userAnswer !== '' ? 'scrollable' : ''}`}>
-                    <table>
-            <tbody >
-                <tr className='titre'>
-                    <th>Pseudo</th>
-                    <th>Peak Elo</th>
-                    <th>Couleur Pseudo</th>
-                    <th>Date de naissance</th>
-                    <th>Activité (chomeur, étudiant, travail)</th>
-                    <th>Badge (viewer, modo, VIP)</th>
-                    <th>Rôle LOL </th>
-                    <th>Ancienneté</th>
-                </tr>
-                        {ansBox}
+                        <table>
+                            <tbody >
+                                <tr className='titre'>
+                                    <th>Pseudo</th>
+                                    <th>Peak Elo</th>
+                                    <th>Couleur Pseudo</th>
+                                    <th>Date de naissance</th>
+                                    <th>Activité (chomeur, étudiant, travail)</th>
+                                    <th>Badge (viewer, modo, VIP)</th>
+                                    <th>Rôle LOL </th>
+                                    <th>Ancienneté</th>
+                                </tr>
+                                {ansBox}
 
-                        </tbody>
-            </table>
+                            </tbody>
+                        </table>
 
                     </div>
                 </div>)}
