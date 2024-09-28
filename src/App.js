@@ -3,6 +3,7 @@ import { AnswerBoxes } from "./AnswerBoxes";
 import SearchBar from "./SearchBar";
 import React, { useEffect, useMemo, useRef, useState  } from "react";
 import FadeLoader from "react-spinners/ClipLoader";
+import Timer from './Timer';
 
 
 function App() {
@@ -163,6 +164,7 @@ function App() {
       : <div>{JSON.stringify([answer.current.pseudo])[3]}</div>}
   </div>
 )}
+<Timer/>
                     <button className="initAgain" onClick={togglePopupVisibility}>
         {isPopupVisible ? 'Close' : 'Liste Homies'}
       </button>
