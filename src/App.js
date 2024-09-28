@@ -45,10 +45,12 @@ function App() {
     }, []);
 
     useEffect(() => {
-        fetch('https://script.google.com/macros/s/AKfycbx1fYfwWe0a-yxVqU4Ud9vV6zjnvPWexpXn1tSkYpW58tBqVImBmEc8MolSMOIrNHRU/exec')
+        fetch('https://script.google.com/macros/s/AKfycbytvMFu4lpXUNo6F-uEYiRIqgvXBthLTZOZKFdfnNdxGjlUnkOjvrl_b7HrGEzJHQme/exec')
             .then(response => response.json())
             .then(data => setRandom(data))
             .catch(error => console.error('Error fetching data:', error));
+
+           
     }, []);
 
     useEffect(() => {
@@ -73,15 +75,26 @@ function App() {
         let newRandom;
 
         newRandom = {
-            pseudo: [random[1]],
-            Elo: [random[2]],
-            Couleur: [random[3]],
-            Age: [String(random[4])],
-            Activite: [random[5]],
-            Badge: [random[6]],
-            Role: [random[7]],
-            Anciennete: [String(random[8])],
+            pseudo: [random.pseudo],
+            Elo: [random.Elo],
+            Couleur: [random.Couleur],
+            Age: [String(random.Age)],
+            Activite: [random.Activite],
+            Badge: [random.Badge],
+            Role: [random.Role],
+            Anciennete: [String(random.Anciennete)],
         };
+        // const newRandom = random.map(item => ({
+        //     pseudo: [item.pseudo],
+        //     Elo: [item.Elo],
+        //     Couleur: [item.Couleur],
+        //     Age: [String(item.Age)],
+        //     Activite: [item.Activite],
+        //     Badge: [item.Badge],
+        //     Role: [item.Role],
+        //     Anciennete: [String(item.Anciennete)],
+        // }));
+        console.log(newRandom)
 
 
         // Update the state with the transformed data
