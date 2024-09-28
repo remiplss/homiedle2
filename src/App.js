@@ -19,7 +19,7 @@ function App() {
     const [indice, setIndice] = useState(false);
     const [random, setRandom] = useState([]);
     const [finalRandom, setFinalRandom] = useState([]);
-    const [choice, setChoice] = useState(false);
+    const [choice, setChoice] = useState(true);
 
 
 
