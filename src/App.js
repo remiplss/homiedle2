@@ -4,6 +4,7 @@ import SearchBar from "./SearchBar";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import FadeLoader from "react-spinners/ClipLoader";
 import Timer from './Timer';
+import {Summary} from "./summary";
 
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
     const [finalRandom, setFinalRandom] = useState([]);
     const [choice, setChoice] = useState(true);
 
-
+    console.log({ answer, tries })
 
     const toggleIndice = () => {
         setIndice(!indice); // Toggle between true and false
@@ -210,7 +211,7 @@ function App() {
                       </>
                     )}
 
-                    <button className='initAgain'>Summary</button>
+                    <Summary win={win} tries={tries.current} />
 
                     <div className={`tableContainer ${userAnswer !== '' ? 'scrollable' : ''}`}>
                         <table>

@@ -1,0 +1,14 @@
+.summary {
+  position: relative;
+  top: 100px;
+  margin-bottom: 18px;
+  padding: 6px 12px 4px;
+  background-color: #1d2227;
+  color: white;
+  border: solid 2px #0b708a;
+  animation-name: initAgainShow;
+  animation-duration: 0.5s;
+  transition: 0.2s;
+  box-shadow: 3px 3px #074a5b;
+  cursor: pointer;
+}
