@@ -50,7 +50,7 @@ function App() {
             .then(data => setRandom(data))
             .catch(error => console.error('Error fetching data:', error));
 
-           
+
     }, []);
 
     useEffect(() => {
@@ -161,7 +161,7 @@ function App() {
                     size={150} />
 
                 </div>) :
-                (<div >
+                (<div>
                     <div className='container'>
                         <h3 onClick={() => toggleChoice(true)} className={choice === true ? 'h3On' : ''}>Daily</h3>
                         <h3 onClick={() => toggleChoice(false)} className={choice === false ? 'h3On' : ''}>Illimité</h3>
@@ -170,51 +170,62 @@ function App() {
                     <h1>Homiedle</h1>
 
                     {answer.current && count >= 3 && (
-                        <div className='indice'>
-                            <div>Indice: La première lettre du pseudo est:</div>
-                            {indice === false
-                                ? <div onClick={toggleIndice}>Cliquer pour voir</div>
-                                : <div>{JSON.stringify([answer.current.pseudo])[3]}</div>}
-                        </div>
+                      <div className='indice'>
+                          <div>Indice: La première lettre du pseudo est:</div>
+                          {indice === false
+                            ? <div onClick={toggleIndice}>Cliquer pour voir</div>
+                            : <div>{JSON.stringify([answer.current.pseudo])[3]}</div>}
+                      </div>
                     )}
-                    {choice === true &&<Timer />}
+                    {choice === true && <Timer/>}
                     <button className="initAgain" onClick={togglePopupVisibility}>
                         {isPopupVisible ? 'Close' : 'Liste Homies'}
                     </button>
 
                     {/* Step 3: Conditionally render the popup and overlay */}
                     {isPopupVisible && (
-                        <>
-                            {/* Overlay for dimming the background */}
-                            <div className="popup-overlay" onClick={togglePopupVisibility}></div>
+                      <>
+                          {/* Overlay for dimming the background */}
+                          <div className="popup-overlay" onClick={togglePopupVisibility}></div>
 
-                            {/* Popup box */}
-                            <div className="popup-box">
-                                <ul>
-                                    {finalData.map((item, index) => (
-                                        <li key={index}>{item.pseudo}</li>
-                                    ))}
-                                </ul>
-                                <button className="initAgain" onClick={togglePopupVisibility} >Close</button>
-                            </div>
-                        </>
+                          {/* Popup box */}
+                          <div className="popup-box">
+                              <ul>
+                                  {finalData.map((item, index) => (
+                                    <li key={index}>{item.pseudo}</li>
+                                  ))}
+                              </ul>
+                              <button className="initAgain" onClick={togglePopupVisibility}>Close</button>
+                          </div>
+                      </>
                     )}
-                    {!win && <SearchBar passClass={winSpin} getAnswer={getAnswer} data={data} setData={setData} count={count} setCount={setCount} />}
-                    {win && <button className='initAgain' onClick={initReset}>Rejouer!</button>}
+                    {!win &&
+                      <SearchBar passClass={winSpin} getAnswer={getAnswer} data={data} setData={setData} count={count}
+                                 setCount={setCount}/>}
+
+                    {win && (
+                      <>
+                          <button className='initAgain' onClick={initReset}>Rejouer!</button>
+                          {/* Move the Summary here & if its daily */}
+                      </>
+                    )}
+
+                    <button className='initAgain'>Summary</button>
+
                     <div className={`tableContainer ${userAnswer !== '' ? 'scrollable' : ''}`}>
                         <table>
-                            <tbody >
-                                <tr className='titre'>
-                                    <th>Pseudo</th>
-                                    <th>Peak Elo</th>
-                                    <th>Couleur Pseudo</th>
-                                    <th>Date de naissance</th>
-                                    <th>Activité (chomeur, étudiant, travail)</th>
-                                    <th>Badge (viewer, modo, VIP)</th>
-                                    <th>Rôle LOL </th>
-                                    <th>Ancienneté</th>
-                                </tr>
-                                {ansBox}
+                            <tbody>
+                            <tr className='titre'>
+                                <th>Pseudo</th>
+                                <th>Peak Elo</th>
+                                <th>Couleur Pseudo</th>
+                                <th>Date de naissance</th>
+                                <th>Activité (chomeur, étudiant, travail)</th>
+                                <th>Badge (viewer, modo, VIP)</th>
+                                <th>Rôle LOL</th>
+                                <th>Ancienneté</th>
+                            </tr>
+                            {ansBox}
 
                             </tbody>
                         </table>
