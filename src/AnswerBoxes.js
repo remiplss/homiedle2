@@ -4,8 +4,9 @@ import { useEffect, useRef, useState } from "react";
 export const AnswerBoxes = (props) => {
     const timeoutRef = useRef(null)
     let answer = props.answer[0]
-
-
+console.log(answer.pseudo)
+console.log(props.index+1)
+console.log(props.isLast)
     const eloOrder = [
         'Unranked',
         'Fer',
@@ -72,15 +73,39 @@ export const AnswerBoxes = (props) => {
     }
 }
 
+// useEffect(() => {
+//     for (let i = 0; i < timeoutRef.current.children.length; i++) {
+//         const delay = i * 300;
+//         setTimeout(() => {
+//             timeoutRef.current.children[i].classList.add('reveal')
+//         }, delay)
+//     }
+// console.log(timeoutRef.current.children)
+// }, [])
 useEffect(() => {
-    for (let i = 0; i < timeoutRef.current.children.length; i++) {
-        const delay = i * 300;
-        setTimeout(() => {
-            timeoutRef.current.children[i].classList.add('reveal')
-        }, delay)
-    }
+    if (props.index+1 === props.isLast) {  // Only apply the effect to the last AnswerBoxes component
+        console.log("test")
+        for (let i = 0; i < timeoutRef.current.children.length; i++) {
+            const delay = i * 300;
+            setTimeout(() => {
+                timeoutRef.current.children[i].classList.add('reveal');
 
-}, [])
+            }, delay);
+        }}
+        else{
+            console.log("test2")
+            for (let i = 0; i < timeoutRef.current.children.length; i++) {
+                    timeoutRef.current.children[i].classList.add('reveal');
+
+            }
+        }
+
+}, [props.isLast]);
+
+
+
+
+
 
 const displayedAnswer = (property) => {
 
@@ -88,7 +113,6 @@ const displayedAnswer = (property) => {
         <td className={adjustClass(property)}>
             <div>
                 {((answer[property]).length > 1 ? (answer[property]).join(', ') : answer[property])}
-                {/* {property === "NombredeTO" && answer[property] >= 99 && <>+</>} */}
             </div>
         </td>
     )

@@ -21,6 +21,8 @@ function App() {
     const [random, setRandom] = useState([]);
     const [finalRandom, setFinalRandom] = useState([]);
     const [choice, setChoice] = useState(true);
+    // const [effect, setEffect] = useState(0);
+
 
 
 
@@ -134,7 +136,7 @@ function App() {
         if (ans !== '') tries.current.push(ans);
         return tries.current.map((el, index) => (
             <>
-                <AnswerBoxes key={index} finalAnswer={answer.current} answer={el} />
+                <AnswerBoxes key={index} index={index} finalAnswer={answer.current} answer={el} isLast={count}/>
 
             </>
 
