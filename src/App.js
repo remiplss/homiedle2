@@ -23,8 +23,6 @@ function App() {
     const [finalRandom, setFinalRandom] = useState([]);
     const [choice, setChoice] = useState(true);
 
-    console.log({ answer, tries })
-
     const toggleIndice = () => {
         setIndice(!indice); // Toggle between true and false
     };
@@ -211,7 +209,7 @@ function App() {
                       </>
                     )}
 
-                    <Summary win={win} tries={tries.current} />
+                    <Summary win={win} tries={tries.current} finalAnswer={answer.current} />
 
                     <div className={`tableContainer ${userAnswer !== '' ? 'scrollable' : ''}`}>
                         <table>
