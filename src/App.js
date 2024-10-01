@@ -5,6 +5,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import FadeLoader from "react-spinners/ClipLoader";
 import Timer from './Timer';
 
+  
 
 function App() {
     const [data, setData] = useState([]);
@@ -155,8 +156,12 @@ function App() {
 
         return displayAnswer(userAnswer);
     }, [userAnswer]);
-    return (
+
+    return (                
+       
+
         <div className="App">
+
             {finalData.length === 0 ?
                 (<div className='loading'><FadeLoader
                     color={"#000000"}
@@ -223,6 +228,7 @@ function App() {
 
                     </div>
                 </div>)}
+
         </div>
     );
 }

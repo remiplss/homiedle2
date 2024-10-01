@@ -1,8 +1,8 @@
-import React, {useRef, useState, useEffect} from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import './assets/searchBar.css';
 
 
-const SearchBar = ({getAnswer, passClass, data, setData, count, setCount}) => {
+const SearchBar = ({ getAnswer, passClass, data, setData, count, setCount }) => {
     // const [data, setData] = useState([]);
     const [finalData, setFinalData] = useState([]);
     const [value, setValue] = useState('')
@@ -10,18 +10,20 @@ const SearchBar = ({getAnswer, passClass, data, setData, count, setCount}) => {
     // const options = dataObjects.map(el => el.pseudo);
     const [options, setOptions] = useState([]);
     const usedValues = useRef([])
+    const inputRef = useRef(null);
+
 
     useEffect(() => {
         fetch('https://script.google.com/macros/s/AKfycbyBy39HPGTQJvFIBUIpCapgv3ZYpdxqS6yqA-PxAlXiCZYG1e2zVvfTVsfu5Vzy1Nxg/exec?path=Sheet1&action=read') // Replace with your actual endpoint URL
-          .then(response => response.json())
-          .then(data => setData(data.data))
-          .catch(error => console.error('Error fetching data:', error));
+            .then(response => response.json())
+            .then(data => setData(data.data))
+            .catch(error => console.error('Error fetching data:', error));
 
         //   const extractedPseudos = data.map(item => item["pseudo"]);
 
-      }, []);
+    }, []);
 
-      useEffect(() => {
+    useEffect(() => {
         const extractedPseudos = data.map(item => [item["pseudo"]]);
 
         setOptions(extractedPseudos)
@@ -35,11 +37,11 @@ const SearchBar = ({getAnswer, passClass, data, setData, count, setCount}) => {
             Badge: [item.Badge],
             Role: [item.Role],
             Anciennete: [String(item.Anciennete)],
-          }));
-      
-          // Update the state with the transformed data
-          setFinalData(newData);
-      }, [data]);
+        }));
+
+        // Update the state with the transformed data
+        setFinalData(newData);
+    }, [data]);
 
 
     const getSuggestions = (inputValue) => {
@@ -59,17 +61,17 @@ const SearchBar = ({getAnswer, passClass, data, setData, count, setCount}) => {
         setSuggestions([])
     }
     const handleCompareClick = () => {
-        
-setCount(count+1)
+
+        setCount(count + 1)
         let userAnswer
-        if(!options.find(el => el[0] == value) && suggestions.length < 1){
+        if (!options.find(el => el[0] == value) && suggestions.length < 1) {
             return
         }
-        else if(!options.find(el => el[0] == value) && suggestions.length > 0){
+        else if (!options.find(el => el[0] == value) && suggestions.length > 0) {
             userAnswer = finalData.filter(el => el.pseudo == suggestions[0])
             usedValues.current.push(suggestions[0].join(''))
         }
-        else{
+        else {
             userAnswer = finalData.filter(el => el.pseudo == value)
             usedValues.current.push(value)
         }
@@ -78,29 +80,38 @@ setCount(count+1)
         setValue('')
     }
     const handleKeyPress = (event) => {
-        if(event.key === 'Enter'){
-            if(value){
-            setValue(String(suggestions[0]))
-            // setSuggestions([])
-            // handleCompareClick()
+        if (event.key === 'Enter') {
+            if (value) {
+                setValue(String(suggestions[0]))
+                // setSuggestions([])
+                // handleCompareClick()
             }
 
 
         }
     }
 
-    return(
+
+    // Focus the input field whenever the component renders
+    useEffect(() => {
+        if (inputRef.current) {
+            inputRef.current.focus();
+        }
+    }, []);
+
+    return (
         <div>
             <div className={`searchBar + ${passClass}`}>
-            <input
-                type="text"
-                value={value}
-                onChange={handleInputChange}
-                onKeyDown={(e) => { 
-                    handleKeyPress(e)
-                }}    
-             placeholder="Taper le pseudo du homie..."
-            />
+                <input
+                    ref={inputRef}  // Attach the ref to the input
+                    type="text"
+                    value={value}
+                    onChange={handleInputChange}
+                    onKeyDown={(e) => {
+                        handleKeyPress(e)
+                    }}
+                    placeholder="Taper le pseudo du homie..."
+                />
                 <button onClick={handleCompareClick}>➤</button>
                 <ul>
                     {suggestions.map((suggestion, index) => (
@@ -113,7 +124,7 @@ setCount(count+1)
             </div>
 
         </div>
- )
+    )
 };
 
 export default SearchBar;
