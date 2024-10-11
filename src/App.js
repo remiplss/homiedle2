@@ -48,7 +48,7 @@ function App() {
     }, []);
 
     useEffect(() => {
-        fetch('https://script.google.com/macros/s/AKfycbytvMFu4lpXUNo6F-uEYiRIqgvXBthLTZOZKFdfnNdxGjlUnkOjvrl_b7HrGEzJHQme/exec')
+        fetch('https://script.google.com/macros/s/AKfycbzcl5NeXn24gBk-FLKs71BCnElOewzqchrYBxqWS4fTHja8b1Dg15PpaNPs3ast86zw/exec')
             .then(response => response.json())
             .then(data => setRandom(data))
             .catch(error => console.error('Error fetching data:', error));
